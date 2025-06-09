@@ -1,20 +1,20 @@
 {
-    "name": "ZinzinTown-Launcher",
-    "preductname": "ZinzinTown Launcher",
-    "version": "1.0.1",
-    "description": "Launcher Mincraft pour le serveur ZinzinTown",
+    "name": "Selvania-Launcher",
+    "preductname": "Selvania Launcher",
+    "version": "2.1.1",
+    "description": "Launcher Mincraft pour le serveur Selvania",
     "main": "src/app.js",
     "author": {
-        "name": "Yazouv, Inc.",
-        "email": "contact@yazouv.fr",
-        "url": "https://github.com/yazouv"
+        "name": "luuxis, Inc.",
+        "email": "contact@luuxis.fr",
+        "url": "https://github.com/luuxis"
     },
-    "url": "http://launcher.yazouv.fr",
+    "url": "http://launcher.luuxis.fr",
     "scripts": {
         "start": "cross-env-shell NODE_ENV=dev electron .",
         "dev": "cross-env-shell DEV_TOOL=open nodemon --exec npm start",
         "build": "node build.js --obf=true --build=platform",
-        "icon": "node build.js --icon=http://localhost/logo.png"
+        "icon": "node build.js --icon=https://raw.githubusercontent.com/luuxis/Selvania-Launcher/master/src/assets/images/icon.png"
     },
     "license": "CCANC",
     "nodemonConfig": {
@@ -30,7 +30,7 @@
     },
     "devDependencies": {
         "cross-env": "^7.0.3",
-        "electron": "^36.3.2",
+        "electron": "^30.5.1",
         "electron-builder": "^26.0.12",
         "javascript-obfuscator": "^4.1.0",
         "jimp": "^0.22.12",
@@ -39,6 +39,6 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/yazouv/ZinzinTown-Launcher.git"
+        "url": "git+https://github.com/luuxis/Selvania-Launcher.git"
     }
 }
