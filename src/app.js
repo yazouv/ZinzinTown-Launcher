@@ -5,7 +5,9 @@
 
 const { app, ipcMain, nativeTheme } = require('electron');
 const { Microsoft } = require('minecraft-java-core');
-const { autoUpdater } = require('electron-updater')
+const { autoUpdater } = require('electron-updater');
+const RPC = require("discord-rpc");
+const clientId = '976535187326382120';
 
 const path = require('path');
 const fs = require('fs');
@@ -114,3 +116,17 @@ autoUpdater.on('error', (err) => {
     const updateWindow = UpdateWindow.getWindow();
     if (updateWindow) updateWindow.webContents.send('error', err);
 });
+
+const rpc = new RPC.Client({ transport: 'ipc' });
+
+
+rpc.on('ready', () => {
+    rpc.setActivity({
+        details: "En jeu",
+        startTimestamp: new Date(),
+        largeImageKey: "logo",
+        instance: false,
+    });
+});
+
+rpc.login({ clientId }).catch(console.error);
