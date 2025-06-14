@@ -299,6 +299,18 @@ class Home {
             new logger('Minecraft', '#36b030');
             ipcRenderer.send('main-window-progress-load')
             infoStarting.innerHTML = `Demarrage en cours...`
+
+            // Détection de la connexion au serveur
+            if (e.includes('Connecting to')) {
+                ipcRenderer.send('update-rpc-state', 'Dans le serveur')
+            } else if (e.includes('Disconnecting voicechat')) {
+                ipcRenderer.send('update-rpc-state', 'Dans le menu du jeu')
+            } else if (e.includes('Launching with arguments') || e.includes('Launching with')) {
+                ipcRenderer.send('update-rpc-state', 'Dans le menu du jeu')
+            } else if (e.includes('Joined the game') || e.includes('Joined game')) {
+                ipcRenderer.send('update-rpc-state', 'Dans le serveur')
+            }
+
             console.log(e);
         })
 
@@ -310,6 +322,7 @@ class Home {
             infoStartingBOX.style.display = "none"
             playInstanceBTN.style.display = "flex"
             infoStarting.innerHTML = `Vérification`
+            ipcRenderer.send('update-rpc-state', 'Dans le launcher')
             new logger(pkg.name, '#7289da');
             console.log('Close');
         });

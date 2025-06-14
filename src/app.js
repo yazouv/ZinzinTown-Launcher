@@ -119,14 +119,25 @@ autoUpdater.on('error', (err) => {
 
 const rpc = new RPC.Client({ transport: 'ipc' });
 
+let currentState = "Dans le launcher";
 
 rpc.on('ready', () => {
+    console.log("Discord RPC is ready");
+    updateRPC();
+});
+
+function updateRPC() {
     rpc.setActivity({
-        details: "En jeu",
+        details: currentState,
         startTimestamp: new Date(),
         largeImageKey: "logo",
         instance: false,
     });
+}
+
+ipcMain.on('update-rpc-state', (event, state) => {
+    currentState = state;
+    updateRPC();
 });
 
 rpc.login({ clientId }).catch(console.error);
